@@ -1,0 +1,124 @@
+﻿@model HealthCalculator.Models.Response
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Результаты рассчета</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <style>
+        body {
+            background: #D8F6CE;
+        }
+        .brd {
+            border: 4px double green;
+            background: #01DF74;
+            padding: 10px;
+        }
+
+        .brd2 {
+            border: 4px;
+            background: #FFFFFF;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <FONT face="Century Gothic" , color="#2E2E2E">
+        <div class="brd">
+            <h1>Благодарим за использование нашего сервиса!</h1>
+            </div>
+        <div class="brd2">
+            @if (Model.Sex == "f")
+            {
+                double imt = Model.Weight / (Model.Height * Model.Height / 10000);
+                double idealWeight = 45.5 + 2.3 * (0.394 * Model.Height - 60.0);
+                double Proteins = 1.7 * idealWeight;
+                double Fats = idealWeight;
+                double Water = idealWeight * 0.03;
+                double A = 0;
+                if (Model.Activity == "low")
+                {
+                    A = 1.375;
+                }
+                else
+                {
+                    if (Model.Activity == "medium")
+                    {
+                        A = 1.55;
+                    }
+                    else
+                    {
+                        if (Model.Activity == "medium")
+                        {
+                            A = 1.725;
+                        }
+                        else
+                        {
+                            A = 1.9;
+                        }
+                    }
+                }
+                double calories = (10 * Model.Weight + 6.25 * Model.Height - 5 * Model.Age - 161) * A;
+                @: Ваш ИМТ составляет @Math.Round(imt, 2) при норме от 18,5 до 24,99 <br />
+                @: Ваш идеальный вес составляет @Math.Round(idealWeight, 1) кг <br />
+                @: Ваша дневная норма белков составляет @Math.Round(Proteins) г <br />
+                @: Ваша дневная норма жиров составляет @Math.Round(Fats) г <br />
+                @: Ваша дневная норма воды составляет @Math.Round(Water, 1) л <br />
+                @:Ваша суточная норма калорий составляет @Math.Round(calories) ккал <br />
+                @:*Норма калорий рассчитана по формуле Миффлина-Сан-Жеора <br />
+            @:(результаты расчетов актуальны для людей в возрасте от 13 до 80 лет)<br />
+                @:**Идеальный вес рассчитан по формуле Devine
+            }
+            else
+            {
+                double imt = Model.Weight / (Model.Height * Model.Height / 10000);
+                double idealWeight = 50 + 2.3 * (0.394 * Model.Height - 60.0);
+                double Proteins = 1.7 * idealWeight;
+                double Fats = idealWeight;
+                double Water = idealWeight * 0.03;
+                double A = 0;
+                if (Model.Activity == "low")
+                {
+                    A = 1.375;
+                }
+                else
+                {
+                    if (Model.Activity == "medium")
+                    {
+                        A = 1.55;
+                    }
+                    else
+                    {
+                        if (Model.Activity == "medium")
+                        {
+                            A = 1.725;
+                        }
+                        else
+                        {
+                            A = 1.9;
+                        }
+                    }
+                }
+                double calories = (10 * Model.Weight + 6.25 * Model.Height - 5 * Model.Age + 5) * A;
+                @: Ваш ИМТ составляет @Math.Round(imt, 2) при норме от 18,5 до 24,99 <br />
+                @: Ваш идеальный вес составляет @Math.Round(idealWeight, 1) кг <br />
+                @: Ваша дневная норма белков составляет @Math.Round(Proteins) г <br />
+                @: Ваша дневная норма жиров составляет @Math.Round(Fats) г <br />
+                @: Ваша дневная норма воды составляет @Math.Round(Water, 1) л <br />
+                @:Ваша суточная норма калорий составляет @Math.Round(calories) ккал <br />
+                @:*Норма калорий рассчитана по формуле Миффлина-Сан-Жеора <br />
+            @:(результаты расчетов актуальны для людей в возрасте от 13 до 80 лет)<br />
+                @:**Идеальный вес рассчитан по формуле Devine
+            }
+
+        </div>
+        </FONT>
+</body>
+</html>

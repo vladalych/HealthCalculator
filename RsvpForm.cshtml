@@ -1,0 +1,71 @@
+﻿
+@model HealthCalculator.Models.Response
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ввод данных</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <style>
+        body {
+            background: #D8F6CE;
+        }
+        .brd {
+            border: 4px double green;
+            background: #01DF74;
+            padding: 10px; 
+        }
+
+        .brd2 {
+            border: 4px; 
+            background: #FFFFFF; 
+            padding: 10px;
+        }
+        
+
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm())
+
+    {
+    
+    <FONT face="Century Gothic", color="#2E2E2E">
+        <div class="brd"><h1>Заполните поля</h1></div>
+        <div class="brd2">
+            <h3>Ваш рост (в см): @Html.TextBoxFor(x => x.Height)</h3>
+            <h3>Ваш вес(в кг): @Html.TextBoxFor(x => x.Weight)</h3>
+            <h3>Ваш возраст (в годах): @Html.TextBoxFor(x => x.Age)</h3>
+            <h3>
+                Ваш пол:
+                @Html.DropDownListFor(x => x.Sex, new[] {
+                    new SelectListItem() { Text = "Женский", Value = "f"},
+                    new SelectListItem() { Text = "Мужской", Value = "m"}
+
+                })
+            </h3>
+            <h3>
+                Ваш уровень физической активности:
+                @Html.DropDownListFor(x => x.Activity, new[] {
+                    new SelectListItem() { Text = "Слабая", Value = "low"},
+                    new SelectListItem() { Text = "Средняя", Value ="medium"},
+                    new SelectListItem() { Text = "Высокая", Value = "high"},
+                    new SelectListItem() { Text = "Экстра-активность", Value = "extra"}
+
+                })
+            </h3>
+           
+                <input type="submit" value="рассчитать"/>
+          
+            </div>
+</FONT>
+    }
+</body>
+</html>
